@@ -26,11 +26,10 @@
     </header>
     <main>
       <section class="input-section">
-        <input
+        <textarea
           class="input-text-check"
-          type="text"
           placeholder="Input your text here"
-        />
+        ></textarea>
 
         <div class="btn-container">
           <button type="button" class="btn-encrypt">Encriptar</button>
@@ -38,12 +37,23 @@
         </div>
       </section>
       <section class="output-section">
-        <div class="text-post-analyze">
-          <img
-            class="little-boy"
-            src="./static/img/Littleboy.svg"
-            alt="Imagen de un personaje asombrado por descubrir un secreto"
-          />
+        <div class="container-post-analyze">
+          <div class="row-post-analyze">
+            <img
+              class="little-boy"
+              src="./static/img/Littleboy.svg"
+              alt="Imagen de un personaje asombrado por descubrir un secreto"
+            />
+            <div class="container-text-output">
+              <p class="alert-msg">Ningun mensaje fue encontrado</p>
+              <p class="announcement-msg">
+                Ingrese el mensaje que desea desencriptar
+              </p>
+            </div>
+          </div>
+          <div class="container-copy">
+            <button type="button" class="btn-copy-text">Copiar</button>
+          </div>
         </div>
       </section>
     </main>
