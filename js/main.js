@@ -65,14 +65,29 @@ inputText.addEventListener(
 function encrypt() {
   const initialText = inputText.value;
 
-  const encryptText = initialText.replace(/[aeiou]/g, (match) => {
+  const encryptString = initialText.replace(/[aeiou]/g, (match) => {
     return encryptConditions[match];
   });
 
-  outputText.innerHTML = encryptText;
+  outputText.innerHTML = encryptString;
 }
 
 btnEncrypt.addEventListener("click", encrypt, false);
+
+// When you decrypt text...
+function decrpyt() {
+  const initialText = inputText.value;
+  const keys = Object.keys(encryptConditions);
+  const regex = new RegExp(`(${keys.join("|")})`, "g");
+
+  const decryptedString = initialText.replace(regex, function (match) {
+    return encryptConditions[match];
+  });
+
+  outputText.innerHTML = decryptedString;
+}
+
+btnDecrypt.addEventListener("click", decrpyt, false);
 /**
  * 1. La letra "e" es convertida para "enter"
  * 2. La letra "i" es convertida para "imes"
