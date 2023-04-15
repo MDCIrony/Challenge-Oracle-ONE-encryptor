@@ -42,6 +42,7 @@
   font-weight: 400;
   font-size: 1.8rem;
   margin-bottom: 2rem;
+  padding: 1rem;
   resize: none;
 
   /* Dark blue/dark-blue-300 */
@@ -149,12 +150,12 @@
 
 .little-boy {
   min-width: 10rem;
-  width: 30rem;
+  width: 25rem;
   background-color: rgba(0, 0, 0, 0);
   margin: 0 2rem 0 2rem;
 }
 
-.alert-msg {
+.alert-text {
   /* Ningún mensaje fue encontrado */
   font-style: normal;
   font-weight: 700;
@@ -181,8 +182,8 @@
   width: 100%;
   font-style: normal;
   font-weight: 400;
-  font-size: 1.2rem;
-  line-height: 150%;
+  font-size: 1.4rem;
+  line-height: 140%;
   text-align: center;
 
   /* Gray/gray-400 */
