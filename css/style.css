@@ -36,17 +36,17 @@
 
 .input-text-check {
   /* Ingrese el texto aqui */
-  border-color: #0a3871;
   height: 500px;
   width: 80%;
   font-style: normal;
   font-weight: 400;
   font-size: 1.8rem;
+  margin-bottom: 2rem;
+  resize: none;
 
   /* Dark blue/dark-blue-300 */
   color: #0a3871;
-
-  margin-bottom: 2rem;
+  border-color: #0a3871;
 }
 
 .btn-container {
