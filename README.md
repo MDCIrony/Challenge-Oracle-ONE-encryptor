@@ -32,5 +32,8 @@ We need to apply the next rules:
 ## How to use
 
 This is only a static html, js and css project. You only need to open index.html on browser.
-If you need to see the project on website, got to the page project:
-(Project URL)[https://mdcirony.github.io/Challenge-Oracle-ONE-encryptor/]
+If you need to see the project on website, got to the [Project Page](https://mdcirony.github.io/Challenge-Oracle-ONE-encryptor/)
+
+## Credits
+
+This project was made by Miguel Díaz Castillo. You can find more of my work and get in touch with me via [My GitHub Profile](https://github.com/MDCIrony) or my [Personal website](https://www.mdcastillo.me/database-info). Special thanks to [name of person or organization] for [specific contribution or assistance].
