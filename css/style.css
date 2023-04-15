@@ -149,7 +149,7 @@
 
 .little-boy {
   min-width: 10rem;
-  max-width: 20rem;
+  width: 30rem;
   background-color: rgba(0, 0, 0, 0);
   margin: 0 2rem 0 2rem;
 }
