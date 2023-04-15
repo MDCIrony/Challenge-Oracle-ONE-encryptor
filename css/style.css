@@ -144,6 +144,7 @@
   display: flex;
   flex-direction: column;
   margin-right: 2rem;
+  margin-left: 2rem;
 }
 
 .little-boy {
@@ -165,21 +166,27 @@
   color: #343a40;
 }
 
+.output-text-container {
+  border: 0.2rem solid #0a3871;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .announcement-msg {
   /* Ingresa el texto que desees encriptar o desencriptar. */
-  flex-grow: 0.9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1.2rem;
   line-height: 150%;
   text-align: center;
 
   /* Gray/gray-400 */
   color: #495057;
-  border: 0.2rem solid #0a3871;
 }
 
 /* Copy section */
