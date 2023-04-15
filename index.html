@@ -27,37 +27,49 @@
     <main>
       <section class="input-section">
         <textarea
+          id="input-text"
           class="input-text-check"
           placeholder="Input your text here"
+          spellcheck="false"
         ></textarea>
 
         <div class="btn-container">
-          <button type="button" class="btn-encrypt">Encriptar</button>
-          <button type="button" class="btn-decrypt">Desencriptar</button>
+          <button id="btn-encrypt" type="button" class="btn-encrypt">
+            Encriptar
+          </button>
+          <button id="btn-decrypt" type="button" class="btn-decrypt">
+            Desencriptar
+          </button>
         </div>
       </section>
       <section class="output-section">
         <div class="container-post-analyze">
           <div class="row-post-analyze">
-            <img
-              class="little-boy"
-              src="./static/img/Littleboy.svg"
-              alt="Imagen de un personaje asombrado por descubrir un secreto"
-            />
             <div class="container-text-output">
-              <p class="alert-msg">Ningun mensaje fue encontrado</p>
-              <p class="announcement-msg">
-                Ingrese el mensaje que desea desencriptar
-              </p>
+              <p id="alert-text" class="alert-text"></p>
+              <div class="output-text-container">
+                <p id="output-text" class="announcement-msg">
+                  Ingrese el mensaje que desea desencriptar
+                </p>
+                <img
+                  id="little-boy"
+                  class="little-boy"
+                  src="./static/img/Littleboy.svg"
+                  alt="Imagen de un personaje asombrado por descubrir un secreto"
+                />
+              </div>
             </div>
           </div>
           <div class="container-copy">
-            <button type="button" class="btn-copy-text">Copiar</button>
+            <button id="btn-copy" type="button" class="btn-copy-text">
+              Copiar
+            </button>
           </div>
         </div>
       </section>
     </main>
     <footer></footer>
-    <script src="./js/main.js"></script>
+    <script type="module" src="./js/initialize.js"></script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>
