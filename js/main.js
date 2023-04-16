@@ -24,12 +24,17 @@ const encryptConditions = {
   u: "ufat",
 };
 
+let actionState = false;
+
+// INITIALIZE
 // Onload event
 window.addEventListener("load", function () {
   inputText.value = "";
   outputText.innerHTML = outputFirstMessage;
   alertText.innerHTML = alertMsg.noText;
 });
+
+// Main methods
 
 // When you input text..
 
@@ -50,6 +55,7 @@ function replyInputOnOutput() {
   }
 
   outputText.innerHTML = inputText.value;
+  actionState = false;
 }
 
 inputText.addEventListener(
@@ -61,9 +67,17 @@ inputText.addEventListener(
   false
 );
 
+// Buttons methods
 // When you encrypt text...
 function encrypt() {
-  const initialText = inputText.value;
+  if (actionState === true) {
+    console.log(
+      "Aqui debe pasar algo, como una alerta, diciendo que debe colocarse nuevo texto."
+    );
+    return;
+  }
+
+  const initialText = outputText.innerText;
   const encryptValues = Object.keys(encryptConditions);
   const regex = new RegExp(`${encryptValues.join("|")}`, "g");
 
@@ -72,12 +86,19 @@ function encrypt() {
   });
 
   outputText.innerHTML = encryptString;
+  alertText.innerHTML = alertMsg.postText;
+  actionState = true;
 }
-
-btnEncrypt.addEventListener("click", encrypt, false);
 
 // When you decrypt text...
 function decrypt() {
+  if (actionState === true) {
+    console.log(
+      "Aqui debe pasar algo, como una alerta, diciendo que debe colocarse nuevo texto."
+    );
+    return;
+  }
+
   const initialText = inputText.value;
   const decryptValues = Object.values(encryptConditions);
   const regex = new RegExp(`(${decryptValues.join("|")})`, "g");
@@ -90,13 +111,9 @@ function decrypt() {
   });
 
   outputText.innerHTML = decryptedString;
+  alertText.innerHTML = alertMsg.postText;
+  actionState = true;
 }
 
+btnEncrypt.addEventListener("click", encrypt, false);
 btnDecrypt.addEventListener("click", decrypt, false);
-/**
- * 1. La letra "e" es convertida para "enter"
- * 2. La letra "i" es convertida para "imes"
- * 3. La letra "a" es convertida para "ai"
- * 4. La letra "o" es convertida para "ober"
- * 5. La letra "u" es convertida para "ufat"
- */
