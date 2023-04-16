@@ -8,13 +8,15 @@ const littleBoy = document.getElementById("little-boy");
 const alertText = document.getElementById("alert-text");
 
 // All constants
-export const alertMsg = {
-  noText: "No messages found",
+let firstAction = false;
+let actionState = false;
+const outputFirstMessage = "Enter the message you want to Encrypt/Decrypt";
+
+const alertMsg = {
+  noText: "No text found",
   preparedText: "Click on Encrypt/Decrypt button and see the magic ;)",
   postText: "You can copy your Encrypt/Decrypt text with copy button!",
 };
-
-const outputFirstMessage = "Enter the message you want to Encrypt/Decrypt";
 
 const encryptConditions = {
   a: "ai",
@@ -24,12 +26,15 @@ const encryptConditions = {
   u: "ufat",
 };
 
+// INITIALIZE
 // Onload event
 window.addEventListener("load", function () {
   inputText.value = "";
   outputText.innerHTML = outputFirstMessage;
   alertText.innerHTML = alertMsg.noText;
 });
+
+// Main methods
 
 // When you input text..
 
@@ -43,6 +48,8 @@ function isSomeTextHere() {
 }
 
 function replyInputOnOutput() {
+  if (!firstAction) firstAction = true;
+
   if (inputText.value === "") {
     outputText.innerHTML = outputFirstMessage;
     alertText.innerHTML = alertMsg.noText;
@@ -50,6 +57,7 @@ function replyInputOnOutput() {
   }
 
   outputText.innerHTML = inputText.value;
+  actionState = false;
 }
 
 inputText.addEventListener(
@@ -61,9 +69,15 @@ inputText.addEventListener(
   false
 );
 
+// Buttons methods
 // When you encrypt text...
 function encrypt() {
-  const initialText = inputText.value;
+  if (actionState === true || firstAction === false) {
+    alert("You must add a new text to be able to execute another action!");
+    return;
+  }
+
+  const initialText = outputText.innerText;
   const encryptValues = Object.keys(encryptConditions);
   const regex = new RegExp(`${encryptValues.join("|")}`, "g");
 
@@ -72,12 +86,17 @@ function encrypt() {
   });
 
   outputText.innerHTML = encryptString;
+  alertText.innerHTML = alertMsg.postText;
+  actionState = true;
 }
-
-btnEncrypt.addEventListener("click", encrypt, false);
 
 // When you decrypt text...
 function decrypt() {
+  if (actionState === true || firstAction === false) {
+    alert("You must add a new text to be able to execute another action!");
+    return;
+  }
+
   const initialText = inputText.value;
   const decryptValues = Object.values(encryptConditions);
   const regex = new RegExp(`(${decryptValues.join("|")})`, "g");
@@ -90,13 +109,27 @@ function decrypt() {
   });
 
   outputText.innerHTML = decryptedString;
+  alertText.innerHTML = alertMsg.postText;
+  actionState = true;
 }
 
+// When you copy your output text
+function copy() {
+  if (actionState === false) {
+    alert("You need to encrypt or decrypt some text before");
+    return;
+  }
+
+  navigator.clipboard
+    .writeText(outputText.innerText)
+    .then(() => {
+      alert("Text copied to clipboard");
+    })
+    .catch((error) => {
+      alert("Error copying text");
+    });
+}
+
+btnEncrypt.addEventListener("click", encrypt, false);
 btnDecrypt.addEventListener("click", decrypt, false);
-/**
- * 1. La letra "e" es convertida para "enter"
- * 2. La letra "i" es convertida para "imes"
- * 3. La letra "a" es convertida para "ai"
- * 4. La letra "o" es convertida para "ober"
- * 5. La letra "u" es convertida para "ufat"
- */
+btnCopy.addEventListener("click", copy, false);
