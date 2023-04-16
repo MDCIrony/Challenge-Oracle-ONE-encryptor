@@ -8,13 +8,15 @@ const littleBoy = document.getElementById("little-boy");
 const alertText = document.getElementById("alert-text");
 
 // All constants
-export const alertMsg = {
-  noText: "No messages found",
+let firstAction = false;
+let actionState = false;
+const outputFirstMessage = "Enter the message you want to Encrypt/Decrypt";
+
+const alertMsg = {
+  noText: "No text found",
   preparedText: "Click on Encrypt/Decrypt button and see the magic ;)",
   postText: "You can copy your Encrypt/Decrypt text with copy button!",
 };
-
-const outputFirstMessage = "Enter the message you want to Encrypt/Decrypt";
 
 const encryptConditions = {
   a: "ai",
@@ -23,9 +25,6 @@ const encryptConditions = {
   o: "ober",
   u: "ufat",
 };
-
-let firstAction = false;
-let actionState = false;
 
 // INITIALIZE
 // Onload event
@@ -74,7 +73,7 @@ inputText.addEventListener(
 // When you encrypt text...
 function encrypt() {
   if (actionState === true || firstAction === false) {
-    alert("Debes agregar un nuevo texto para poder ejecutar otra acción!");
+    alert("You must add a new text to be able to execute another action!");
     return;
   }
 
@@ -94,7 +93,7 @@ function encrypt() {
 // When you decrypt text...
 function decrypt() {
   if (actionState === true || firstAction === false) {
-    alert("Debes agregar un nuevo texto para poder ejecutar otra acción!");
+    alert("You must add a new text to be able to execute another action!");
     return;
   }
 
@@ -115,9 +114,7 @@ function decrypt() {
 }
 
 // When you copy your output text
-// function copy() {}
-
-btnCopy.addEventListener("click", () => {
+function copy() {
   if (actionState === false) {
     alert("You need to encrypt or decrypt some text before");
     return;
@@ -126,12 +123,13 @@ btnCopy.addEventListener("click", () => {
   navigator.clipboard
     .writeText(outputText.innerText)
     .then(() => {
-      alert("Texto copiado al portapapeles");
+      alert("Text copied to clipboard");
     })
     .catch((error) => {
-      alert("Error al copiar el texto: ", error);
+      alert("Error copying text");
     });
-});
+}
 
 btnEncrypt.addEventListener("click", encrypt, false);
 btnDecrypt.addEventListener("click", decrypt, false);
+btnCopy.addEventListener("click", copy, false);
