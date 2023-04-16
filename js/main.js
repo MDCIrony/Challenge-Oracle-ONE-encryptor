@@ -24,6 +24,7 @@ const encryptConditions = {
   u: "ufat",
 };
 
+let firstAction = false;
 let actionState = false;
 
 // INITIALIZE
@@ -48,6 +49,8 @@ function isSomeTextHere() {
 }
 
 function replyInputOnOutput() {
+  if (!firstAction) firstAction = true;
+
   if (inputText.value === "") {
     outputText.innerHTML = outputFirstMessage;
     alertText.innerHTML = alertMsg.noText;
@@ -70,10 +73,8 @@ inputText.addEventListener(
 // Buttons methods
 // When you encrypt text...
 function encrypt() {
-  if (actionState === true) {
-    console.log(
-      "Aqui debe pasar algo, como una alerta, diciendo que debe colocarse nuevo texto."
-    );
+  if (actionState === true || firstAction === false) {
+    alert("Debes agregar un nuevo texto para poder ejecutar otra acción!");
     return;
   }
 
@@ -92,10 +93,8 @@ function encrypt() {
 
 // When you decrypt text...
 function decrypt() {
-  if (actionState === true) {
-    console.log(
-      "Aqui debe pasar algo, como una alerta, diciendo que debe colocarse nuevo texto."
-    );
+  if (actionState === true || firstAction === false) {
+    alert("Debes agregar un nuevo texto para poder ejecutar otra acción!");
     return;
   }
 
@@ -114,6 +113,25 @@ function decrypt() {
   alertText.innerHTML = alertMsg.postText;
   actionState = true;
 }
+
+// When you copy your output text
+// function copy() {}
+
+btnCopy.addEventListener("click", () => {
+  if (actionState === false) {
+    alert("You need to encrypt or decrypt some text before");
+    return;
+  }
+
+  navigator.clipboard
+    .writeText(outputText.innerText)
+    .then(() => {
+      alert("Texto copiado al portapapeles");
+    })
+    .catch((error) => {
+      alert("Error al copiar el texto: ", error);
+    });
+});
 
 btnEncrypt.addEventListener("click", encrypt, false);
 btnDecrypt.addEventListener("click", decrypt, false);
